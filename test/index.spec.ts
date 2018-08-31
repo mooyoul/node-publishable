@@ -27,45 +27,42 @@ describe("publishable", () => {
   });
 
   context("when package is not published to registry", () => {
-    it("should return true", async () => {
-      sandbox.mock(pacote)
-        .expects("manifest")
-        .withArgs("package-name@1.0.0")
-        .rejects(new MockPacoteError("ENOVERSIONS"));
+    beforeEach(() => {
+      sandbox.stub(pacote, "manifest").rejects(new MockPacoteError("ENOVERSIONS"));
+    });
 
+    it("should return true", async () => {
       expect(await publishable("package-name", "1.0.0")).to.be.eq(true);
     });
   });
 
   context("when package is published but requested version is not published to registry", () => {
-    it("should return true", async () => {
-      sandbox.mock(pacote)
-        .expects("manifest")
-        .withArgs("package-name@1.1.1")
-        .rejects(new MockPacoteError("ETARGET"));
+    beforeEach(() => {
+      sandbox.stub(pacote, "manifest").rejects(new MockPacoteError("ETARGET"));
+    });
 
-      expect(await publishable("package-name", "1.1.1")).to.be.eq(true);
+    it("should return true", async () => {
+      expect(await publishable("@user/package-name", "1.1.1")).to.be.eq(true);
     });
   });
 
-  context("when package is published but requested version is not published to registry", () => {
-    it("should return true", async () => {
-      sandbox.mock(pacote)
-        .expects("manifest")
-        .withArgs("package-name@0.0.1")
-        .resolves({ name: "package-name", version: "0.0.1" });
+  context("when package is published and requested version is published to registry", () => {
+    beforeEach(() => {
+      sandbox.stub(pacote, "manifest").resolves({ name: "package-name", version: "0.0.1" });
+    });
 
+    it("should return false", async () => {
       expect(await publishable("package-name", "0.0.1")).to.be.eq(false);
     });
   });
 
   context("when unknown error was thrown", () => {
-    it("should return false", async () => {
-      sandbox.mock(pacote)
-        .expects("manifest")
-        .withArgs("package-name@1.2.3")
-        .rejects(new MockPacoteError("UNKNOWN_ERROR"));
 
+    beforeEach(() => {
+      sandbox.stub(pacote, "manifest").rejects(new MockPacoteError("UNKNOWN_ERROR"));
+    });
+
+    it("should return false", async () => {
       expect(await publishable("package-name", "1.2.3")).to.be.eq(false);
     });
   });
