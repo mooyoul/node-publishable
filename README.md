@@ -8,7 +8,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/mooyoul/node-publishable/badge.svg)](https://snyk.io/test/github/mooyoul/node-publishable)
 [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://mooyoul.mit-license.org/)
 
-Checks if a package is publishable to NPM registry
+Checks if a package is publishable to NPM registry (with private package support!)
 
 
 ## Sponsor
@@ -30,6 +30,11 @@ import publishable = require("publishable");
 
 await publishable("package-name", "version"); // returns `boolean`
 ```
+
+# Related
+
+- [mooyoul/node-publishable-cli](https://github.com/mooyoul/node-publishable-cli) - CLI for this module, made for CI/CD workflow 
+
 
 ## Changelog
 
