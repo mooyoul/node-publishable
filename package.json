@@ -1,6 +1,6 @@
 {
   "name": "publishable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Checks if a package is publishable to NPM registry",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
