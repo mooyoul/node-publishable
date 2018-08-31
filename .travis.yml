@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+- '6'
+- '8'
+- '10'
+after_success:
+- cat ./coverage/lcov.info | node_modules/.bin/coveralls
+- bash <(curl -s https://codecov.io/bash)
+before_deploy:
+- npm run prepublishOnly
+deploy:
+  provider: npm
+  email: mooyoul@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: lAPW/GQGyy12hQAlkwtn+zcxFto9i5P4zDAFqa6gb8DOOgQrXprMAbzX1hSyaJ2K6ItFLsmEGrDxDDMYJmLI/xbgqD5Gq/hnEckK+SmMKnELMfAEbrxvQPJI3yQUnnbVRdzcle9vlwMPJIwj97pV87BTrZIa+koWK1qUoWQF41kgjVJ0/07GNSVH3+BytgS3nOwshLVbez0Ixzh+PunfDRTksfkwot+LLq0PalV3+IHC6e4UBSPsIggx+OkDDHIU60oQY2NiR7u9q7UdnFVWHd+1kErGC14UIv/sRpVIjQSrqyKcBg6cHFVw6HMyp4X9t+dPVQKP18wm4VhjiD+th3T8MxCQ5Ps3P5RAJOMal12GDqYSii6qTMHyq0FUH39qdLlmnTwumhjsS9B6cZklFt9V3ZWrSnw0xJoFFKojTE3eC+jn9npqb+A+v3Vp+QSiJUIlW9EOZiLmLwbMG6qshIztM1wTuObMQv8Oqm3Whqu2FaYtosh3wuU6gPK5p9j0dkW8KP48J8r16CkuRBUiOX1A43hvNhQttmPSiMS9oR0s6pFKx2LIfFzYzSVgOETlkynvzY0HgXc+292Gta7AjUGHpLdyJaQE5lqk6tX2anYE4WVJhHrdQLvLxpaiJtQ5ZFGuBp4RM96uI69iGmXRcnTfLYu6ewJ2o861YtDr+Z4=
+  on:
+    tags: true
+    repo: mooyoul/node-publishable

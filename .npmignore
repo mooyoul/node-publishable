@@ -1,0 +1,11 @@
+src/
+test/
+examples/
+tsconfig*.json
+tslint.json
+.travis.yml
+.nyc_output
+.idea
+coverage
+*.spec.*
+

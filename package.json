@@ -1,0 +1,69 @@
+{
+  "name": "publishable",
+  "version": "0.1.0",
+  "description": "Checks if a package is publishable to NPM registry",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build",
+    "lint": "tslint -c tslint.json '{examples,src,test}/**/*.ts'",
+    "test": "TS_NODE_PROJECT=tsconfig.test.json nyc mocha -R spec test/**/*.spec.ts"
+  },
+  "nyc": {
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "all": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mooyoul/node-publishable.git"
+  },
+  "keywords": [
+    "npm",
+    "publish",
+    "ci",
+    "cd"
+  ],
+  "author": "MooYeol Prescott Lee <mooyoul@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mooyoul/node-publishable/issues"
+  },
+  "homepage": "https://github.com/mooyoul/node-publishable#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/debug": "0.0.30",
+    "@types/mocha": "^5.2.3",
+    "@types/node": "^8.10.29",
+    "@types/sinon": "^5.0.1",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "sinon": "^6.0.0",
+    "source-map-support": "^0.5.6",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "pacote": "^9.1.0"
+  }
+}
