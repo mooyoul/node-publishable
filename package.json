@@ -1,6 +1,6 @@
 {
   "name": "publishable",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Checks if a package is publishable to NPM registry",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,6 +21,9 @@
     ],
     "include": [
       "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
     ],
     "reporter": [
       "lcov",
@@ -50,6 +53,7 @@
     "@types/debug": "0.0.30",
     "@types/mocha": "^5.2.3",
     "@types/node": "^8.10.29",
+    "@types/rc": "0.0.1",
     "@types/sinon": "^5.0.1",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
@@ -64,6 +68,7 @@
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "pacote": "^9.1.0"
+    "pacote": "^9.1.0",
+    "rc": "^1.2.8"
   }
 }

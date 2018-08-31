@@ -1,18 +1,18 @@
 import * as debug from "debug";
-
 // tslint:disable-next-line
 const pacote = require("pacote") as {
-  manifest(spec: string): Promise<{ [key: string]: any }>;
+  manifest(spec: string, opts: any): Promise<{ [key: string]: any }>;
 };
+import rc = require("rc");
 
 const log = debug("publishable");
+const config = rc("npm", {});
 
 export = async function publishable(packageName: string, versionSpec: string): Promise<boolean> {
   const spec = `${packageName}@${versionSpec}`;
   log("querying package manifest to registry for spec %s...", spec);
-
   try {
-    await pacote.manifest(spec); // if success, given spec already exists on registry. so cannot publish.
+    await pacote.manifest(spec, config); // if success, given spec already exists on registry. so cannot publish.
 
     return false;
   } catch (e) {
