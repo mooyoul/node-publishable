@@ -31,6 +31,18 @@ import publishable = require("publishable");
 await publishable("package-name", "version"); // returns `boolean`
 ```
 
+## Changelog
+
+#### 0.2.0
+
+- Add `.npmrc` support
+- Add scoped package support
+- Add private package support
+
+#### 0.1.0
+
+- Initial commit
+
 ## Debugging
 
 Set `DEBUG` environment variable to `publishable`.
