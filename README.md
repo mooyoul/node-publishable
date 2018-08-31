@@ -33,6 +33,10 @@ await publishable("package-name", "version"); // returns `boolean`
 
 ## Changelog
 
+#### 0.2.1
+
+- Add E404 error code handling
+
 #### 0.2.0
 
 - Add `.npmrc` support

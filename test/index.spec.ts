@@ -28,6 +28,16 @@ describe("publishable", () => {
 
   context("when package is not published to registry", () => {
     beforeEach(() => {
+      sandbox.stub(pacote, "manifest").rejects(new MockPacoteError("E404"));
+    });
+
+    it("should return true", async () => {
+      expect(await publishable("@foo/bar", "3.4.5")).to.be.eq(true);
+    });
+  });
+
+  context("when package is published but requested version is not published to registry", () => {
+    beforeEach(() => {
       sandbox.stub(pacote, "manifest").rejects(new MockPacoteError("ENOVERSIONS"));
     });
 

@@ -17,7 +17,7 @@ export = async function publishable(packageName: string, versionSpec: string): P
     return false;
   } catch (e) {
     // given spec does not exists on registry, so package is publishable.
-    if (e.code === "ENOVERSIONS" || e.code === "ETARGET") {
+    if (e.code === "ENOVERSIONS" || e.code === "ETARGET" || e.code === "E404") {
       return true;
     }
 
